@@ -1,4 +1,5 @@
 package src;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class CityModel {
@@ -28,6 +29,36 @@ public class CityModel {
         setDistrict(district);
         setPopulation(population);
         setFoundation(foundation);
+    }
+
+    public static CityModel recordToCity(List<String> record) {
+        String name, region, district, populationStr, foundation;
+        try {
+            name = record.get(1);
+            region = record.get(2);
+            district = record.get(3);
+            populationStr = record.get(4);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("Incorrect record input! (id=" + record.get(0) + ")", e);
+        }
+        try {
+            foundation = record.get(5);
+        } catch (IndexOutOfBoundsException e) {
+            foundation = null; // No foundation info
+        }
+        int population;
+
+        try {
+            population = Integer.parseInt(populationStr);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Population isn't an integer!", e);
+        }
+        try {
+            return new CityModel(name, region, district, population, foundation);
+        } catch (IllegalArgumentException e) { // got incorrect record
+            System.out.println(e.getLocalizedMessage());
+            return null;
+        }
     }
 
     public String getName() {
