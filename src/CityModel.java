@@ -70,10 +70,16 @@ public class CityModel {
     }
 
     public String getFoundation() {
+        if (foundation == null)
+            return "н/у";
         return foundation;
     }
 
     public void setFoundation(String foundation) throws IllegalArgumentException {
+        if (foundation == null) {
+            this.foundation = null;
+            return;
+        }
         boolean correctFoundation = !foundation.isEmpty();
         if (!correctFoundation) throw new IllegalArgumentException("Incorrect foundation!");
         this.foundation = foundation;
