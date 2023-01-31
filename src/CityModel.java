@@ -127,6 +127,6 @@ public class CityModel {
                 ", district='" + getDistrict() + '\'' +
                 ", population=" + getPopulation() +
                 ", foundation='" + getFoundation() + '\'' +
-                '}';
+                '}' + '\n';
     }
 }
