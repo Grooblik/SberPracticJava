@@ -2,10 +2,11 @@ package src;
 import java.util.regex.Pattern;
 
 public class CityModel {
-    public static final String CITY_NAME_REGEX = "[А-Я][А-Яа-я\\- ]+";
-    public static final String CITY_REGION_REGEX = "[А-Я][А-Яа-я\\- .]+";
 
-    public static final String CITY_DISTRICT_REGEX = "[А-Я][А-Яа-я\\- ]+";
+    public static final String CITY_NAME_REGEX = "[А-ЯёЁ][А-ЯЁа-яё\\- ]+";
+    public static final String CITY_REGION_REGEX = "[А-ЯёЁ][А-ЯЁа-яё\\- .]+";
+
+    public static final String CITY_DISTRICT_REGEX = "[А-ЯёЁ][А-ЯЁа-яё\\- ]+";
 
     private String name;
     private String region;
