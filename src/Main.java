@@ -20,9 +20,18 @@ public class Main {
         return values;
     }
     public static void main(String[] args) {
+        List<List<String>> records;
+        try {
+            records = getRecordsFromCSVFile("cities.csv");
+        } catch (RuntimeException e) {
+            System.out.println(e.getLocalizedMessage());
+            return;
+        }
+        List<CityModel> cityModels = records.stream().map(
+                CityModel::recordToCity
+        ).toList();
 
-        List<List<String>> records = getRecordsFromCSVFile("../cities.csv");
-
+        System.out.println(cityModels);
 
     }
 
