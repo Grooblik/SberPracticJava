@@ -27,11 +27,11 @@ public class Main {
             System.out.println(e.getLocalizedMessage());
             return;
         }
-        List<CityModel> cityModels = records.stream().map(
-                CityModel::recordToCity
+        List<City> cities = records.stream().map(
+                City::recordToCity
         ).toList();
 
-        System.out.println(cityModels);
+        System.out.println(cities);
 
     }
 

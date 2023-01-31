@@ -2,7 +2,7 @@ package src;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class CityModel {
+public class City {
 
     public static final String CITY_NAME_REGEX = "[А-ЯёЁ][А-ЯЁа-яё\\- ]+";
     public static final String CITY_REGION_REGEX = "[А-ЯёЁ][А-ЯЁа-яё\\- .]+";
@@ -16,7 +16,7 @@ public class CityModel {
 
     private String foundation;
 
-    public CityModel(
+    public City(
             String name,
             String region,
             String district,
@@ -31,7 +31,7 @@ public class CityModel {
         setFoundation(foundation);
     }
 
-    public static CityModel recordToCity(List<String> record) {
+    public static City recordToCity(List<String> record) {
         String name, region, district, populationStr, foundation;
 
         if (record.size() < 5) throw new IllegalArgumentException("Incorrect record input! (id=" + record.get(0) + ")");
@@ -46,7 +46,7 @@ public class CityModel {
         int population = getPopulationFromString(populationStr);
 
         try {
-            return new CityModel(name, region, district, population, foundation);
+            return new City(name, region, district, population, foundation);
         } catch (IllegalArgumentException e) { // got incorrect record
             System.out.println(e.getLocalizedMessage());
             return null;
