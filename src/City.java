@@ -121,7 +121,7 @@ public class City {
 
     @Override
     public String toString() {
-        return "CityModel{" +
+        return "City{" +
                 "name='" + getName() + '\'' +
                 ", region='" + getRegion() + '\'' +
                 ", district='" + getDistrict() + '\'' +
