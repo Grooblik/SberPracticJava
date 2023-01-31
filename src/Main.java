@@ -23,17 +23,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List<List<String>> records;
-        try {
-            records = getRecordsFromCSVFile(CSV_FILE_PATH);
-        } catch (RuntimeException e) {
-            System.out.println(e.getLocalizedMessage());
-            return;
-        }
-        List<City> cities = records.stream().map(
-                City::recordToCity
-        ).toList();
+        List<City> cities = getCitiesFromFile();
+        if (cities == null) return;
 
+        sortingDemonstration(cities);
+    }
+
+    private static void sortingDemonstration(List<City> cities) {
         System.out.println("Without sort");
         System.out.println(cities);
 
@@ -55,6 +51,19 @@ public class Main {
         System.out.println(
                 getSortedList(cities, districtComparator)
         );
+    }
+
+    private static List<City> getCitiesFromFile() {
+        List<List<String>> records;
+        try {
+            records = getRecordsFromCSVFile(CSV_FILE_PATH);
+        } catch (RuntimeException e) {
+            System.out.println(e.getLocalizedMessage());
+            return null;
+        }
+        return records.stream().map(
+                City::recordToCity
+        ).toList();
     }
 
     private static List<City> getSortedList(List<City> cities, Comparator<City> nameComparator) {
