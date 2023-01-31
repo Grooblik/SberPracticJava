@@ -1,1 +1,5 @@
 /.idea/
+/out/production/SberPracticJava/.gitignore
+/out/production/SberPracticJava/cities.csv
+/out/production/SberPracticJava/src/CityModel.class
+/out/production/SberPracticJava/src/Main.class
