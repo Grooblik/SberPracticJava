@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
     private static final String SEMICOLON_DELIMITER = ";";
@@ -27,7 +29,40 @@ public class Main {
         if (cities == null) return;
 
         sortingDemonstration(cities);
+
+        showMaxPopulation(cities);
+
+        showRegionsCitiesCount(cities);
+
     }
+
+    private static void showRegionsCitiesCount(List<City> cities) {
+
+        System.out.println("Region's cities count:");
+
+        cities
+                .stream().map(city -> city.getRegion())
+                .collect(
+                        Collectors.groupingBy(
+                                Function.identity(), Collectors.counting()
+                        )
+                )
+                .forEach((reg, count) -> System.out.println(reg + " - " + count));
+    }
+
+    private static void showMaxPopulation(List<City> cities) {
+        City[] citiesArray = cities.toArray(City[]::new);
+        int max_population = -1, max_index = 0;
+        for (int index = 0; index < citiesArray.length; index++) {
+            if (max_population < citiesArray[index].getPopulation()) {
+                max_index = index;
+            }
+        }
+
+        System.out.println("Max population:");
+        System.out.println("[" + max_index + "] = " + citiesArray[max_index].getPopulation());
+    }
+
 
     private static void sortingDemonstration(List<City> cities) {
         System.out.println("Without sort");
